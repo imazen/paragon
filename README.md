@@ -1,7 +1,5 @@
-paragon
-=======
 
-*Let's call unmanaged dependencies udeps.*
+*For brevity, let's call unmanaged dependencies udeps.*
 
 # Creating a template for .NET/native interop
 
