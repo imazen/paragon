@@ -14,7 +14,7 @@ vNext reduces reliance (and eventually, access) to OS APIs. To replace that func
 5. No API to discover 'original' location. Compilation folder - .CodePoint check. Shadow-copied .Location - check. Directory assemblies were shadow-copied from? We can make educated (but often incorrect) guesses. 
 6. NuGet is blind to udeps. Scripted solutions still break in some scenarios.
 7. MinGW (the most common cross-platform build environment) is poorly maintained and very underfunded. 
-8. Key chocolately packages (like cmake) don't work.
+8. Cmake on windows can be painful.
 9. No compatibility between VS and GNU build toolchains. 
 10. Interop can be impossible with more than one AppDomain per process. (If dll has any static configuration, or lacks its own thread safety). Looking at you, OpenCV.
 11. No safe/reliable lifecycle events to hook into and fixup DLL loading/copying and unloading (AFAIK). Mutexes in App_Start, perhaps? Failure would be permanent.
@@ -46,7 +46,7 @@ Embed copies of native dependencies in the managed DLLs, then extract them at ru
 
 ## End goals
 
-Create a sample cross-platform, multi-architecture NuGet package with udeps - that *just works* in ASP.NET vNext - even when you switch between 32 and 64-bit test runners. All processes (builds, tests, static analysis, binding generation) must be scripted and AppVeyor compatible.
+Create a sample cross-platform, multi-architecture NuGet package with udeps - that *just works* in ASP.NET and ASP.NET vNext - even when you switch between 32 and 64-bit test runners. All processes (builds, tests, static analysis, binding generation) must be scripted and AppVeyor compatible.
 
 To cover all bases, it should include indirect udeps and udeps with procwide configuration (like a callback fn).
 
