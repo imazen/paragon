@@ -79,8 +79,8 @@ I maintain .NET wrappers for libwebp, FreeImage, CAIR, FFmpeg, Ghostscript, and 
 I know many of these are project-specific, but 'generally best direction' answers are great.
 
 * What is the best approach for maintaining automated windows builds of unmanaged software which in turn has unmanaged dependencies? Example: LibGD depends on zlib, libpng, freetype, libjpeg-turbo, and (optionally) libtiff, libxpm, and fontconfig. So far, to achieve CI, I've had to [version precompiled static versions of these dependencies](https://github.com/imazen/gd-libgd/blob/master/appveyor.yml) for each target platform. 
-* CMake or not to CMake? Ensuring cross-platform builds means we have to maintain *nix, msvc, and msys makefiles. Is CMake usually up to the task on windows (given enough sweat), or are handmake windows makefiles typically the best answer?
-* Msys or msvc? Is it typically worth the effort porting to MSVC, or is msys+gcc the way to go?
+* CMake or not to CMake? Ensuring cross-platform builds means we have to maintain *nix, msvc, and MinGW makefiles. Is CMake usually up to the task on windows (given enough sweat), or are handmade windows makefiles typically the best answer?
+* MinGW or msvc? Is it typically worth the effort porting to MSVC, or is MinGW+gcc the way to go?
 * C++/CLI or P/Invoke? Or both, with C++/CLI versions for windows to avoid udep hell?
 * Should unmanaged dependencies get their own NuGet package, or be subsumed into the .NET wrapper?
 * How should unmanaged dependencies be located? To support AnyCPU, we need multiple platforms side-by-side, which means (at least) subfolders per architecture. Have locale variations ever been known to be a concern?
