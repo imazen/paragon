@@ -1,5 +1,5 @@
 
-*For brevity, let's call unmanaged dependencies udeps.*
+*For brevity, let's call unmanaged dependencies udeps.* Skip to end for *specific questions*. 
 
 # Creating a template for .NET/native interop
 
@@ -70,5 +70,23 @@ Define standards for
 
 * Conventions for organization of udeps by architecture and possibly by locale? More than one architecture may need to be deployed or tested, so all variants must be reachable. 
 
+## Real-world cases (Mine are mostly in an ASP.NET context).
 
+I maintain .NET wrappers for libwebp, FreeImage, CAIR, FFmpeg, Ghostscript, and OpenCV. I'm working on a .NET wrapper for LibGD. I've experimented with many approaches to dependency management, but haven't found a reliable AND user-friendly solution. In turn, the ImageResizer plugins that depend on these wrappers are second-class citizens.
 
+## Specific questions 
+
+I know many of these are project-specific, but 'generally best direction' answers are great.
+
+* What is the best approach for maintaining automated windows builds of unmanaged software which in turn has unmanaged dependencies? Example: LibGD depends on zlib, libpng, freetype, libjpeg-turbo, and (optionally) libtiff, libxpm, and fontconfig. So far, to achieve CI, I've had to [version precompiled static versions of these dependencies](https://github.com/imazen/gd-libgd/blob/master/appveyor.yml) for each target platform. 
+* CMake or not to CMake? Ensuring cross-platform builds means we have to maintain *nix, msvc, and msys makefiles. Is CMake usually up to the task on windows (given enough sweat), or are handmake windows makefiles typically the best answer?
+* Msys or msvc? Is it typically worth the effort porting to MSVC, or is msys+gcc the way to go?
+* C++/CLI or P/Invoke? Or both, with C++/CLI versions for windows to avoid udep hell?
+* Should unmanaged dependencies get their own NuGet package, or be subsumed into the .NET wrapper?
+* How should unmanaged dependencies be located? To support AnyCPU, we need multiple platforms side-by-side, which means (at least) subfolders per architecture. Have locale variations ever been known to be a concern?
+* How do we handle shadow-copying? Can we shadow-copy unmanaged dependencies ourselves, to prevent the locked file plague?
+* Is remote download of dependencies (I.e, during App_Start) feasible? It would seem to depend on being able to shadow-copy from .NET, and on transactional file operations.
+* Say nuget package A uses a different version of libpng than nuget package B. Is there a method to allow both to be used side-by-side in .NET, or should we dump all native dependencies in a single architecture-specific folder and let them fight it out with file overwrites?
+* What can we ask the awesome AppVeyor folks to implement to make unmanaged builds easier?
+* In ASP.NET are there any thread-safe hooks other than App_Start for dll fixup? (I.e, places where a DLL can block all other application threads to do something (during start). 
+* Is there any reliable exit phase for cleanup, that is guaranteed to run after all requests have been terminated?
