@@ -90,3 +90,19 @@ I know many of these are project-specific, but 'generally best direction' answer
 * What can we ask the awesome AppVeyor folks to implement to make unmanaged builds easier?
 * In ASP.NET are there any thread-safe hooks other than App_Start for dll fixup? (I.e, places where a DLL can block all other application threads to do something (during start). 
 * Is there any reliable exit phase for cleanup, that is guaranteed to run after all requests have been terminated?
+
+## Recent feedback from a very helpful guy
+
+* Use CMake, it's worth it. Add a wrapper script to fetch dependencies first and set up config.h and compile vars.
+* Ideally, compile all things from source, with a git repository for each project, and each project having its own CI setup with dependency fetching.
+* MSVC can be very extremely competitive with performance using profile guided optimization. V14 will reduce C99 pain.
+* It is possible to move a locked file (on the same drive) with MoveFileEx - use this to get older assemblies out of the way during a deploy. 
+* You can schedule deletion of a file via MoveFileEx, using a null destination with (delayuntilreboot) flags.
+* An alternative to LoadLibrary - modify the process search path.
+* For a thread-safe fixup, use module initializer via [PreApplicationStartMethodAttribute](http://msdn.microsoft.com/en-us/library/system.web.preapplicationstartmethodattribute.aspx), perhaps?
+* Don't rely on cleanup.
+* Don't try side-by-side native assemblies
+* Don't try shadow copying
+* 
+
+
