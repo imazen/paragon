@@ -9,7 +9,7 @@ vNext reduces reliance (and eventually, access) to OS APIs. To replace that func
 
 1. Exploits are more common in native code. Low-friction upstream merges, builds, tests, and static analysis are key to maintaining security. Burden of security responsibility always falls on the wrapper maintainer (at least, in the Win ecosystem).
 2. Visual Studio does not track or copy udeps.
-3. Udeps are not shadow-copied. Resulting issues include (but are not limited to) frequent deploy failures due to locked files.
+3. Udeps are not shadow-copied. Resulting issues include (but are not limited to) [frequent deploy failures due to locked files](https://github.com/projectkudu/kudu/issues/1122).
 4. Not all udeps are assemblies (unmanaged assemblies often depend on physical .xml or data files which can't be embedded).
 5. No API to discover 'original' location. Compilation folder - .CodePoint check. Shadow-copied .Location - check. Directory assemblies were shadow-copied from? We can make educated (but often incorrect) guesses. 
 6. NuGet is blind to udeps. Scripted solutions still break in some scenarios.
@@ -105,4 +105,12 @@ I know many of these are project-specific, but 'generally best direction' answer
 * Don't try shadow copying
 * 
 
+[SqlServerCompact handles native binaries with an apparently good result](https://github.com/projectkudu/kudu/issues/943). [LibGit2 has struggled with udeps](https://github.com/libgit2/libgit2sharp/pull/700), as has 
 
+
+There [have been attempts to add native support to NuGet](http://nuget.codeplex.com/discussions/412012), something [about Extension SDKs](https://nuget.codeplex.com/discussions/396720)  and [more than](https://npe.codeplex.com/discussions/462174)  one [issue filed about it](http://nuget.codeplex.com/workitem/1221). CoApp has [a video on making native (uncompiled) NuGet packages](https://www.youtube.com/watch?v=l4MAkR13JPA). 
+
+
+There's a [NuGet package for copying stuff to the build directory](https://github.com/baseclass/Contrib.Nuget), and [an article about it](http://www.baseclass.ch/blog/Lists/Beitraege/Post.aspx?ID=6&mobile=0). 
+
+The udpes topic [has been brought up in the context of vNext as an issue](https://github.com/aspnet/KRuntime/issues/402) also.
