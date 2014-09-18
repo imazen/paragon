@@ -113,4 +113,11 @@ There [have been attempts to add native support to NuGet](http://nuget.codeplex.
 
 There's a [NuGet package for copying stuff to the build directory](https://github.com/baseclass/Contrib.Nuget), and [an article about it](http://www.baseclass.ch/blog/Lists/Beitraege/Post.aspx?ID=6&mobile=0). 
 
-The udpes topic [has been brought up in the context of vNext as an issue](https://github.com/aspnet/KRuntime/issues/402) also.
+The udeps topic [has been brought up in the context of vNext as an issue](https://github.com/aspnet/KRuntime/issues/402) also.
+
+
+## Libraries and authors who've dealt with the problem
+
+* Microsoft.SqlServer.Compact - last release 2012, maintainer unknown
+* LibGit2Sharp - [LinQPad/Testrunner issues](https://github.com/libgit2/libgit2sharp/issues/515), then dealing with [the ASP.NET deloy and Kudu issues](https://github.com/libgit2/libgit2sharp/pull/425), and [switching to .targets based installation](https://github.com/libgit2/libgit2sharp/pull/615) but [multi-platform web is still an open issue](https://github.com/libgit2/libgit2sharp/issues/733). 
+..add more here..
