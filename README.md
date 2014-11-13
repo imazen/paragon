@@ -121,3 +121,8 @@ The udeps topic [has been brought up in the context of vNext as an issue](https:
 * Microsoft.SqlServer.Compact - last release 2012, maintainer unknown
 * LibGit2Sharp - [LinQPad/Testrunner issues](https://github.com/libgit2/libgit2sharp/issues/515), then dealing with [the ASP.NET deloy and Kudu issues](https://github.com/libgit2/libgit2sharp/pull/425), and [switching to .targets based installation](https://github.com/libgit2/libgit2sharp/pull/615) but [multi-platform web is still an open issue](https://github.com/libgit2/libgit2sharp/issues/733). 
 ..add more here..
+
+
+https://npe.codeplex.com/discussions/462174
+http://stackoverflow.com/questions/19478775/add-native-files-from-nuget-package-to-project-output-directory
+http://blog.nuget.org/20141023/package-manifests.html
