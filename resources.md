@@ -25,3 +25,4 @@
 ### Misc
 
 * [Export C interface from C#](* http://www.nuget.org/packages/UnmanagedExports/)
+* [al.exe can create a 'manifest wrapper' for a native dll, so it will be copied around](http://blogs.msdn.com/b/jorman/archive/2007/08/31/loading-c-assemblies-in-asp-net.aspx)
