@@ -1,5 +1,59 @@
 
-*For brevity, let's call unmanaged dependencies udeps.* Skip to end for *specific questions*. 
+*For brevity, let's call unmanaged dependencies udeps.* 
+
+# 2017 update - looking for help
+
+I spent the week after Christmas trying to figure out where NuGet is at, reading its source code, and trying to discover if I'm unblocked yet on anything. https://github.com/imazen/Imazen.NativeDependencyManager still appears blocked by shadow-copy. The docs that do exist contradict one another.
+
+Given that I seem to *always* hit every NuGet corner case, perhaps somone would be interested in picking up a subset this project, and demonstrating how to use NuGet for udep delivery in a way that is seamless for end-users, works with test runners, and can be published via Travis/Appveyor?
+
+Some history:
+https://github.com/NuGet/Home/issues/300
+
+And https://github.com/aspnet/dnx/issues/402
+
+### Runtime IDs
+
+.NET Core has documentation on "runtime IDs"
+https://docs.microsoft.com/en-us/dotnet/articles/core/rid-catalog
+http://www.natemcmaster.com/blog/2016/05/19/nuget3-rid-graph/
+
+**No clear answer on whether this is supported on .NET 4.6.1 or 4.6.2, and to what extent. I can find no mention of changes to udep discovery.**  Last I checked, x64 and x86 subfolders still weren't searched by default. 
+
+### .NET Standard
+
+We now have a way to target both .NET Full and .NET Core at the same time. Yay!
+https://github.com/dotnet/standard/blob/master/docs/versions.md
+
+It's a bit leaky, but could be worse :) https://github.com/dotnet/standard/blob/master/docs/netstandard-20/README.md#net-framework-461-supporting-net-standard-20
+
+And targeting specific versions got easier: Targeting different .NET editions is easier: https://docs.nuget.org/ndocs/guides/create-cross-platform-packages
+
+
+### runtime.{rid} nuget package convention?
+
+Mostly used by Microsoft, but some others have started using it, too. 
+
+https://www.nuget.org/packages?q=runtime.win
+
+**Should we adopt this convention for rid-specific packages? It does namespace away these support packages.**
+
+
+### Existing packages
+
+We have a mega-package with all udeps together. This won't scale for large binaries.
+https://github.com/natemcmaster/libsqlite3-package
+See https://github.com/natemcmaster/libsqlite3-package/blob/master/SQLite.nuspec
+
+
+https://github.com/NuGet/Home/issues/2782
+
+Targeting different .NET editions is easier: https://docs.nuget.org/ndocs/guides/create-cross-platform-packages
+
+
+# 2015 below here
+
+Skip to end for *specific questions*. 
 
 # Creating a template for .NET/native interop
 
